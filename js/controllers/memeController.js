@@ -33,7 +33,6 @@ function renderMeme() {
 
 function renderCanvas() {
 
-    //* Set the background default color
     gCtx.fillStyle = 'white'
     gCtx.fillRect(0, 0, gElCanvas.width, gElCanvas.height)
 
