@@ -1,0 +1,40 @@
+body {
+    background-color: antiquewhite;
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    background-color: #f1f8ff;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.meme-editor {
+    display: grid;
+    gap: 400px;
+    grid-template-areas:"c e" ;
+
+}
+
+.editor {
+    grid-area: e;
+}
+
+.canvas-container {
+    cursor: pointer;
+    width: 30vw;
+    height: 60vh;
+    grid-area: c;
+    /* border-radius: 10px; */
+    /* overflow: hidden; */
+}
+
+canvas {
+    border: 1px solid black;
+    border-radius: 20px;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
