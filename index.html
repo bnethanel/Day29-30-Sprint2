@@ -10,7 +10,12 @@
 
 <body onload="onInit()" onresize="resizeCanvas()">
 
-    <div style="display: none;" class="image-gallery"></div>
+    <div class="nav-buttons">
+        <button class="editor-button" onclick="goToEditor()">Editor</button>
+        <button class="gallery-button" onclick="goToGallery()">Gallery</button>
+    </div>
+
+    <div class="image-gallery"></div>
 
     <div class="meme-editor">
         <div class="canvas-container">
