@@ -54,3 +54,8 @@ function resizeCanvas() {
     gElCanvas.height = elContainer.offsetHeight
     renderCanvas()
 }
+
+function onSetLineTxt(txt) {
+    setLineTxt(txt)
+    renderMeme()
+}
