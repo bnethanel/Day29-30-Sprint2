@@ -13,7 +13,7 @@ body {
 
 .meme-editor {
     display: grid;
-    gap: 400px;
+    gap: 200px;
     grid-template-areas:"c e" ;
 
 }
@@ -24,7 +24,7 @@ body {
 
 .canvas-container {
     cursor: pointer;
-    width: 30vw;
+    width: 40vw;
     height: 60vh;
     grid-area: c;
     /* border-radius: 10px; */

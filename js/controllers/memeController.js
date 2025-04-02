@@ -25,8 +25,32 @@ function renderMeme() {
         meme.lines.forEach((line, idx) => {
             gCtx.font = `${line.size}px Impact`
             gCtx.fillStyle = line.color
+            gCtx.strokeStyle = 'black'
             gCtx.textAlign = 'center'
-            gCtx.fillText(line.txt, gElCanvas.width / 2, 50 + idx * 50)
+            gCtx.lineWidth = 1
+
+            const x = gElCanvas.width / 2
+            const y = 50 + idx * 50
+
+            gCtx.fillText(line.txt, x, y)
+            gCtx.strokeText(line.txt, x, y)
+
+            
+            if (idx === meme.selectedLineIdx) {
+                const textWidth = gCtx.measureText(line.txt).width
+                const padding = 10
+                const height = line.size + 10
+
+                gCtx.strokeStyle = 'red'
+                gCtx.lineWidth = 2
+                gCtx.strokeRect(
+                    x - textWidth / 2 - padding,
+                    y - line.size,
+                    textWidth + padding * 2,
+                    height
+                )
+
+            }
         })
     }
 }
@@ -57,5 +81,26 @@ function resizeCanvas() {
 
 function onSetLineTxt(txt) {
     setLineTxt(txt)
+    renderMeme()
+}
+
+function onSetColor(color) {
+    setColor(color)
+    renderMeme()
+}
+
+function onChangeFontSize(diff) {
+    changeFontSize(diff)
+    renderMeme()
+}
+
+function onSwitchLines() {
+    switchLines()
+    renderMeme()
+    syncEditorInputs()
+}
+
+function onAddLines() {
+    addLines()
     renderMeme()
 }

@@ -24,6 +24,11 @@
 
         <div class="editor">
             <input oninput="onSetLineTxt(this.value)" type="text">
+            <input oninput="onSetColor(this.value)" value="#ffffff" type="color" id="color-picker">
+            <button onclick="onChangeFontSize(2)">Increase Font</button>
+            <button onclick="onChangeFontSize(-2)">Decrease Font</button>
+            <button onclick="onSwitchLines()">Change Line</button>
+            <button onclick="onAddLines()">Add Line</button>
         </div>
     </div>
 
