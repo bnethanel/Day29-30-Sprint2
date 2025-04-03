@@ -88,6 +88,7 @@ canvas {
     justify-content: center;
     gap: 10px;
     padding-top: 20px;
+    padding-bottom: 15px;
 }
 
 .gallery-img {
@@ -143,10 +144,6 @@ button:hover {
     .nav-buttons {
         margin-right: 10px;
         gap: 10px;
-    }
-
-    .image-gallery {
-        padding-bottom: 15px;
     }
 
     .gallery-img {
