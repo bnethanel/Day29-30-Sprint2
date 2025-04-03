@@ -141,7 +141,8 @@ button:hover {
     }
 
     .nav-buttons {
-        margin-right: 0px;
+        margin-right: 10px;
+        gap: 10px;
     }
 
     .gallery-img {
