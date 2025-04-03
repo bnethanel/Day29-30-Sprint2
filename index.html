@@ -10,10 +10,16 @@
 
 <body onload="onInit()" onresize="resizeCanvas()">
 
-    <div class="nav-buttons">
-        <button class="editor-button" onclick="goToEditor()">Editor</button>
-        <button class="gallery-button" onclick="goToGallery()">Gallery</button>
-    </div>
+
+    <header class="main-header">
+        <div class="logo-img">
+            <img src="img/logo-image.png" alt="">
+        </div>
+        <div class="nav-buttons">
+            <button class="editor-button" onclick="goToEditor()">Editor</button>
+            <button class="gallery-button" onclick="goToGallery()">Gallery</button>
+        </div>
+    </header>
 
     <div class="image-gallery"></div>
 
@@ -23,14 +29,55 @@
         </div>
 
         <div class="editor">
-            <input oninput="onSetLineTxt(this.value)" type="text">
-            <input oninput="onSetColor(this.value)" value="#ffffff" type="color" id="color-picker">
-            <button onclick="onChangeFontSize(2)">Increase Font</button>
-            <button onclick="onChangeFontSize(-2)">Decrease Font</button>
-            <button onclick="onSwitchLines()">Change Line</button>
-            <button onclick="onAddLines()">Add Line</button>
+
+            <div class="input-container">
+                <p class="edit-p" style="display: inline;">Enter Input: </p>
+                <input oninput="onSetLineTxt(this.value)" type="text">
+            </div>
+            
+
+            <div class="text-color">
+                <p class="edit-p" style="display: inline;">Text Color:</p>
+                <input oninput="onSetColor(this.value)" value="#ffffff" type="color" id="color-picker">
+            </div>
+            
+            <div class="font-options">
+                <button onclick="onChangeFontSize(2)">Increase Font</button>
+                <button onclick="onChangeFontSize(-2)">Decrease Font</button>
+                <select onchange="onSetFont(this.value)">
+                    <option value="">Select Font</option>
+                    <option value="Impact">Impact</option>
+                    <option value="Arial">Arial</option>
+                    <option value="Courier New">Courier New</option>
+                    <option value="Comic Sans MS">Comic Sans MS</option>
+                </select>
+            </div>
+
+            <div class="text-align">
+                <button onclick="onSetAlign('left')">Text Left</button>
+                <button onclick="onSetAlign('center')">Text Center</button>
+                <button onclick="onSetAlign('right')">Text Right</button>
+            </div>
+
+
+            <div class="line-placements">
+                <button onclick="onSwitchLines()">Change Line</button>
+                <button onclick="onMoveLine(-10)">⬆️</button>
+                <button onclick="onMoveLine(10)">⬇️</button>
+            </div>
+
+            <div class="line-options">
+                <button onclick="onAddLines()">Add Line</button>
+                <button onclick="onDeleteLine()">🗑️ Delete Line</button>
+            </div>
+
+            <a id="download-link" download="my-meme.png">
+                <button onclick="onDownloadMeme()">⬇️ Download Meme</button>
+            </a>
         </div>
     </div>
+
+    <footer class="main-footer">© 2025 Super Meme Generator</footer>
 
     <script src="js/main.js"></script>
     <script src="js/services/utilService.js"></script>

@@ -1,34 +1,72 @@
 body {
-    background-color: antiquewhite;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
     margin: 0px;
     padding: 0px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    
-    background-color: #f1f8ff;
-    align-items: center;
     min-height: 100vh;
 }
 
-.meme-editor {
-    display: grid;
-    gap: 200px;
-    grid-template-areas:"c e" ;
 
+.main-header {
+    background-color: #f9fbfc;
+    border-bottom: 1px solid #c4c4c4;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-buttons {
+    display: flex;
+    margin-right: 30px;
+    gap: 30px;
+    
+}
+
+.nav-buttons > button {
+    font-size: 1rem;
+    height: 60px;
+    width: 120px;
+    background-color: rgb(149, 156, 255);
+    border-radius: 999px;
+}
+
+.meme-editor {
+    background-color: #DBE2EF;
+    display: grid;
+    place-items: center;
+    height: 100%;
+    gap: 50px;
+    grid-template-areas: "c e";
+
+}
+
+
+.logo-img {
+    height: 130px;
+}
+
+.logo-img img {
+    height: 130px;
+}
+
+.edit-p {
+    font-size: 1.3rem;
 }
 
 .editor {
     grid-area: e;
+
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    gap: 30px;
 }
 
 .canvas-container {
     cursor: pointer;
     width: 40vw;
-    height: 60vh;
+    height: 65vh;
     grid-area: c;
-    /* border-radius: 10px; */
-    /* overflow: hidden; */
 }
 
 canvas {
@@ -41,17 +79,41 @@ canvas {
 
 .image-gallery {
     display: flex;
+    background-color: #DBE2EF;
     flex-wrap: wrap;
     justify-content: center;
     gap: 10px;
-    margin-top: 20px;
+    padding-top: 20px;
 }
 
 .gallery-img {
-    width: 200px;
+    width: auto;
     height: auto;
     border-radius: 10px;
     cursor: pointer;
     transition: transform 0.2s ease;
 }
 
+.main-footer {
+    background-color: #3F72AF;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    font-size: 1rem;
+
+
+}
+
+button {
+    background-color: #3F72AF;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s ease;
+  }
+  button:hover {
+    background-color: #2C5282;
+  }

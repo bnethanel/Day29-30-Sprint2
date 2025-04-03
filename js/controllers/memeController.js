@@ -3,10 +3,12 @@
 let gElCanvas
 let gCtx
 let gLastPos
+let gIsDownload = false
 
 function onInit() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
+    goToEditor()
     resizeCanvas()
     renderCanvas()
     renderMeme()
@@ -24,14 +26,14 @@ function renderMeme() {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
 
         meme.lines.forEach((line, idx) => {
-            gCtx.font = `${line.size}px Impact`
+            gCtx.font = `${line.size}px ${line.font}`
             gCtx.fillStyle = line.color
             gCtx.strokeStyle = 'black'
-            gCtx.textAlign = 'center'
+            gCtx.textAlign = line.align
             gCtx.lineWidth = 1
 
-            const x = gElCanvas.width / 2
-            const y = 50 + idx * 50
+            const x = line.x || gElCanvas.width / 2
+            const y = line.y ?? 50 + idx * 50
 
             line.x = x
             line.y = y
@@ -48,10 +50,23 @@ function renderMeme() {
                 const padding = 10
                 const height = line.size + 10
 
-                gCtx.strokeStyle = 'red'
+                let boxX
+                if (line.align === 'left') {
+                    boxX = x
+                } else if (line.align === 'center') {
+                    boxX = x - textWidth / 2
+                } else if (line.align === 'right') {
+                    boxX = x - textWidth
+                }
+
+                if (!gIsDownload) {
+                    gCtx.strokeStyle = 'red'
+                }   else {
+                    gCtx.strokeStyle = 'transparent'
+                }
                 gCtx.lineWidth = 2
                 gCtx.strokeRect(
-                    x - textWidth / 2 - padding,
+                    boxX - padding,
                     y - line.size,
                     textWidth + padding * 2,
                     height
@@ -64,12 +79,22 @@ function renderMeme() {
 
 function onMarkLine(ev) {
     const { offsetX, offsetY } = ev
-
     const meme = getMeme()
 
-    const clickedLine = meme.lines.find((line) => {
-        const xStart = line.x - line.width / 2
-        const xEnd = line.x + line.width / 2
+    const clickedLine = meme.lines.find(line => {
+        let xStart, xEnd
+
+        if (line.align === 'left') {
+            xStart = line.x
+            xEnd = line.x + line.width
+        } else if (line.align === 'center') {
+            xStart = line.x - line.width / 2
+            xEnd = line.x + line.width / 2
+        } else if (line.align === 'right') {
+            xStart = line.x - line.width
+            xEnd = line.x
+        }
+
         const yTop = line.y - line.height
         const yBottom = line.y
 
@@ -138,4 +163,40 @@ function onSwitchLines() {
 function onAddLines() {
     addLines()
     renderMeme()
+}
+
+function onSetFont(font) {
+    setFont(font)
+    renderMeme()
+}
+
+function onSetAlign(align) {
+    setAlign(align)
+    renderMeme()
+}
+
+function onDeleteLine() {
+    deleteSelectedLine()
+    renderMeme()
+    syncEditorInputs()
+}
+
+function onMoveLine(dy) {
+    moveLine(dy)
+    renderMeme()
+}
+
+function onDownloadMeme() {
+    gIsDownload = true
+    renderMeme()
+    setTimeout(() => {
+        const dataUrl = gElCanvas.toDataURL('image/jpeg')
+        const elLink = document.getElementById('download-link')
+        elLink.href = dataUrl
+
+        gIsDownload = false
+        renderMeme()
+        elLink.click()
+    }, 100) 
+
 }

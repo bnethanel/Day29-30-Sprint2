@@ -23,13 +23,10 @@ var gMeme = {
         {
             txt: 'Write Your Input',
             size: 30,
-            color: 'white'
+            color: 'white',
+            font: 'impact',
+            align: 'center'
         },
-        {
-            txt: 'Second line',
-            size: 30,
-            color: 'white'
-        }
     ]
 }
 var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
@@ -67,7 +64,10 @@ function addLines() {
     const newLine = {
         txt: 'Add input',
         size: 30,
-        color: 'white'
+        color: 'white',
+        font: 'impact',
+        align: 'center'
+        
     }
 
     gMeme.lines.push(newLine)
@@ -76,9 +76,11 @@ function addLines() {
 function resetMemeLines() {
     gMeme.lines = [
         {
-            txt: 'New Meme!',
+            txt: 'Add input',
             size: 30,
-            color: 'white'
+            color: 'white',
+            font: 'impact',
+            align: 'center'
         }
     ]
     gMeme.selectedLineIdx = 0
@@ -93,5 +95,26 @@ function syncEditorInputs() {
 function rgbToHex(color) {
     const ctx = document.createElement('canvas').getContext('2d')
     ctx.fillStyle = color
-    return ctx.fillStyle // returns hex like #ffffff even if 'white'
+    return ctx.fillStyle 
+}
+
+function setFont(font) {
+    gMeme.lines[gMeme.selectedLineIdx].font = font
+}
+
+function setAlign(align) {
+    const line = gMeme.lines[gMeme.selectedLineIdx]
+    line.align = align
+
+    if (align === 'left') line.x = 20
+    else if (align === 'right') line.x = gElCanvas.width - 20
+    else line.x = gElCanvas.width / 2
+}
+
+function deleteSelectedLine() {
+    gMeme.lines.splice(gMeme.selectedLineIdx, 1)
+}
+
+function moveLine(dy) {
+    gMeme.lines[gMeme.selectedLineIdx].y += dy
 }
