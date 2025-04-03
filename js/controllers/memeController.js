@@ -10,6 +10,7 @@ function onInit() {
     resizeCanvas()
     renderCanvas()
     renderMeme()
+    gElCanvas.addEventListener('click', onMarkLine)
 
 }
 
@@ -32,10 +33,16 @@ function renderMeme() {
             const x = gElCanvas.width / 2
             const y = 50 + idx * 50
 
+            line.x = x
+            line.y = y
+            line.width = gCtx.measureText(line.txt).width
+            line.height = line.size
+
+
             gCtx.fillText(line.txt, x, y)
             gCtx.strokeText(line.txt, x, y)
 
-            
+
             if (idx === meme.selectedLineIdx) {
                 const textWidth = gCtx.measureText(line.txt).width
                 const padding = 10
@@ -54,6 +61,34 @@ function renderMeme() {
         })
     }
 }
+
+function onMarkLine(ev) {
+    const { offsetX, offsetY } = ev
+
+    const meme = getMeme()
+
+    const clickedLine = meme.lines.find((line) => {
+        const xStart = line.x - line.width / 2
+        const xEnd = line.x + line.width / 2
+        const yTop = line.y - line.height
+        const yBottom = line.y
+
+        return (
+            offsetX >= xStart &&
+            offsetX <= xEnd &&
+            offsetY >= yTop &&
+            offsetY <= yBottom
+        )
+    })
+
+    if (clickedLine) {
+        gMeme.selectedLineIdx = meme.lines.indexOf(clickedLine)
+        syncEditorInputs()
+        renderMeme()
+    }
+}
+
+
 
 function renderCanvas() {
 
