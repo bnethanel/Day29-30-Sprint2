@@ -155,4 +155,10 @@ button:hover {
         gap: 20px;
     }
 
+    .nav-buttons>button {
+        font-size: 1rem;
+        height: 40px;
+        width: 100px;
+    }
+
 }
