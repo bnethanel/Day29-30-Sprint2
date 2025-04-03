@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     display: grid;
     grid-template-rows: auto 1fr auto;
@@ -19,10 +23,10 @@ body {
     display: flex;
     margin-right: 30px;
     gap: 30px;
-    
+
 }
 
-.nav-buttons > button {
+.nav-buttons>button {
     font-size: 1rem;
     height: 60px;
     width: 120px;
@@ -114,23 +118,36 @@ button {
     font-weight: bold;
     cursor: pointer;
     transition: 0.2s ease;
-  }
-  button:hover {
-    background-color: #2C5282;
-  }
+}
 
-  @media (max-width: 740px) {
+button:hover {
+    background-color: #2C5282;
+}
+
+@media (max-width: 740px) {
     .meme-editor {
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 1fr;
-        grid-template-areas: 
-        "c"
-        "e";
+        grid-template-areas:
+            "c"
+            "e";
 
         gap: 0px;
     }
+
     .canvas-container {
         width: 100%;
+
     }
-    
-  }
+
+    .nav-buttons {
+        margin-right: 0px;
+    }
+
+    .gallery-img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+
+}
