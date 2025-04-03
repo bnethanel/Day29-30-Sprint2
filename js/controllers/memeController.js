@@ -197,6 +197,6 @@ function onDownloadMeme() {
         gIsDownload = false
         renderMeme()
         elLink.click()
-    }, 100) 
+    }, 1000) 
 
 }
