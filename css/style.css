@@ -154,6 +154,7 @@ button:hover {
     .editor {
         align-items: center;
         gap: 20px;
+        margin-bottom: 10px;
     }
 
     .nav-buttons>button {
