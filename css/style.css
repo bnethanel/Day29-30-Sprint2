@@ -33,6 +33,7 @@ body {
 .meme-editor {
     background-color: #DBE2EF;
     display: grid;
+    grid-template-columns: 1fr 1fr;
     place-items: center;
     height: 100%;
     gap: 50px;
@@ -116,4 +117,20 @@ button {
   }
   button:hover {
     background-color: #2C5282;
+  }
+
+  @media (max-width: 740px) {
+    .meme-editor {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-template-areas: 
+        "c"
+        "e";
+
+        gap: 0px;
+    }
+    .canvas-container {
+        width: 100%;
+    }
+    
   }
