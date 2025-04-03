@@ -23,7 +23,6 @@ body {
     display: flex;
     margin-right: 30px;
     gap: 30px;
-
 }
 
 .nav-buttons>button {
