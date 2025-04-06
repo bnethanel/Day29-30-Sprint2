@@ -60,7 +60,7 @@ function renderMeme() {
                 }
 
                 if (!gIsDownload) {
-                    gCtx.strokeStyle = 'red'
+                    gCtx.strokeStyle = 'lightblue'
                 }   else {
                     gCtx.strokeStyle = 'transparent'
                 }
@@ -128,14 +128,14 @@ function onClearCanvas() {
 }
 
 function renderImg(img) {
-    gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
 }
 
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')
-    gElCanvas.width = elContainer.offsetWidth
-    gElCanvas.height = elContainer.offsetHeight
+    const size = elContainer.offsetWidth
+    gElCanvas.width = size
+    gElCanvas.height = size
     renderCanvas()
 }
 
